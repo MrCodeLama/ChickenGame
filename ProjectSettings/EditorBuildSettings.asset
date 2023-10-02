@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: c8f60c4ac90dd4e149d5b7a450030626
   - enabled: 1
+    path: Assets/Scenes/Wardrobe.unity
+    guid: 86a954ed0840e48ed9cc07cd341fe0b9
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
   m_configObjects:

@@ -27,4 +27,9 @@ public class Menumanager : MonoBehaviour
     {
         settingsPanel.SetActive(false);
     }
+
+    public void ScinChange()
+    {
+        Application.LoadLevel("Wardrobe");
+    }
 }
