@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
    public float Speed = 10f;
    public Rigidbody rb;
-   public bool _isOnGround = true;
+   public bool _isOnGround = false;
 
    private void Start()
    {
