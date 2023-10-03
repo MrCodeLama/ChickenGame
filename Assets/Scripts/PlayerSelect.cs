@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerSelect : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class PlayerSelect : MonoBehaviour
 
     private void Start()
     {
+        index = PlayerPrefs.GetInt("SelectPlayer");
         characters = new GameObject[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -21,9 +24,9 @@ public class PlayerSelect : MonoBehaviour
             go.SetActive(false);
         }
 
-        if (characters[0])
+        if (characters[index])
         {
-            characters[0].SetActive(true);
+            characters[index].SetActive(true);
         }
     }
 
@@ -47,5 +50,11 @@ public class PlayerSelect : MonoBehaviour
             index = 0;
         }
         characters[index].SetActive(true);
+    }
+
+    public void StartScene()
+    {
+        PlayerPrefs.SetInt("SelectPlayer",index);
+        SceneManager.LoadScene("Menu");
     }
 }
