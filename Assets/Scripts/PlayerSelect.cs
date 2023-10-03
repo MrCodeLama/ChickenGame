@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelect : MonoBehaviour
 {
-    private GameObject[] characters;
-    private int index;
+    public GameObject[] characters;
+    public int index;
 
     private void Start()
     {

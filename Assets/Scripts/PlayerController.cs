@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public Animator animator;
-   public float speed = 0.1f;
-   
+   public SpeedController speedcntrl;
+   public float speed;
    public Rigidbody rb;
    public bool _isOnGround = false;
-
+   public int index;
+   public GameObject[] characters;
    private void Start()
    {
-      animator = GetComponent<Animator>();
+      index = transform.GetComponent<PlayerSelect>().index;
+      characters = transform.GetComponent<PlayerSelect>().characters;
+      
+      speedcntrl = Camera.main.gameObject.GetComponent<SpeedController>();
       rb = GetComponent<Rigidbody>();
    }
 
@@ -24,15 +27,18 @@ public class PlayerController : MonoBehaviour
          rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
-
       UpdateSpeed();
-      animator.speed = speed;
+      
    }
+   
+   
 
    private void UpdateSpeed()
    {
-      speed += Time.deltaTime * 0.1f;
+      speed = speedcntrl.speed;
+      characters[index].GetComponent<Animator>().speed = speed;
    }
+   
    private void OnCollisionEnter(Collision col)
    {
       if (col.gameObject.name == "Ground")
