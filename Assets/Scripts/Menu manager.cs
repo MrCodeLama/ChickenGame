@@ -30,6 +30,10 @@ public class Menumanager : MonoBehaviour
 
     public void ScinChange()
     {
-        Application.LoadLevel("Wardrobe");
+        Application.LoadLevel("Waredrobe");
+    }
+    public void BackToMenu()
+    { 
+        Application.LoadLevel("Menu");
     }
 }
