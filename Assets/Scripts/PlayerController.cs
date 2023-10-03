@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
    {
       if (Input.GetMouseButtonDown(0) && _isOnGround)
       {
-         rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+         rb.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
       UpdateSpeed();
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
    private void UpdateSpeed()
    {
       speed = speedcntrl.speed;
-      characters[index].GetComponent<Animator>().speed = speed;
+      characters[index].GetComponent<Animator>().speed = speed*0.7f;
    }
    
    private void OnCollisionEnter(Collision col)

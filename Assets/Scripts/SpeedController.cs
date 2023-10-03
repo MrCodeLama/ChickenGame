@@ -12,6 +12,9 @@ public class SpeedController : MonoBehaviour
     }
     private void UpdateSpeed()
     {
-        speed += Time.deltaTime * 0.001f;
+        if (speed <= 1.5)
+        {
+            speed += Time.deltaTime * 0.01f;
+        }
     }
 }

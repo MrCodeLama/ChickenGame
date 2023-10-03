@@ -18,7 +18,7 @@ public class FenceMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime *(-1f * 10));
+        transform.Translate(Vector3.right * speed * Time.deltaTime *(-1f * 7f));
         if (!IsVisibleByCamera())
         {
             // Destroy the object
@@ -35,7 +35,7 @@ public class FenceMover : MonoBehaviour
     private bool IsVisibleByCamera()
     {
         Vector3 viewportPos = mainCamera.WorldToViewportPoint(transform.position);
-        return (viewportPos.x > 0);
+        return (viewportPos.x > -0.2f);
     }
     
 }
