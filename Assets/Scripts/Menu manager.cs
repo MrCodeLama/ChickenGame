@@ -36,4 +36,8 @@ public class Menumanager : MonoBehaviour
     { 
         Application.LoadLevel("Menu");
     }
+    public void Shop()
+    { 
+        Application.LoadLevel("Shop");
+    }
 }
