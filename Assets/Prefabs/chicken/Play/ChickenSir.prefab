@@ -100,8 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c13e8bdcf2fe084d9650bc50f3366c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  rb: {fileID: 0}
+  animator: {fileID: 9028752884482330513}
+  animationParameterName: Speed
+  speed: 0.1
+  rb: {fileID: -2597906495625565664}
   _isOnGround: 1
 --- !u!65 &7509272318305515365
 BoxCollider:

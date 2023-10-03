@@ -414,7 +414,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 36.2, y: 26, z: 0}
---- !u!1001 &1313034615
+--- !u!1 &1089940361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089940362}
+  - component: {fileID: 1089940363}
+  m_Layer: 0
+  m_Name: Fences
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1089940362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089940361}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1089940363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089940361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3285a023e1c8926419e49c058889c7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fence: {fileID: 3975891232814615362, guid: 7830b1fdea8f3064f84e4a768c6c4ea1, type: 3}
+  speed: 1
+--- !u!1001 &1619327064
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -430,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 4662751097626772374, guid: 346407b1bb751bd42af252d497c8aeb7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.014876
+      value: -8.259781
       objectReference: {fileID: 0}
     - target: {fileID: 4662751097626772374, guid: 346407b1bb751bd42af252d497c8aeb7,
         type: 3}
@@ -440,7 +486,7 @@ PrefabInstance:
     - target: {fileID: 4662751097626772374, guid: 346407b1bb751bd42af252d497c8aeb7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.26820374
+      value: 0.6211233
       objectReference: {fileID: 0}
     - target: {fileID: 4662751097626772374, guid: 346407b1bb751bd42af252d497c8aeb7,
         type: 3}
@@ -595,4 +641,5 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1158535}
   - {fileID: 2025616872}
-  - {fileID: 1313034615}
+  - {fileID: 1089940362}
+  - {fileID: 1619327064}
