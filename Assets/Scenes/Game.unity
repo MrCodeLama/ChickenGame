@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1165,10 +1165,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1694069787}
-  - component: {fileID: 1694069789}
   - component: {fileID: 1694069792}
   - component: {fileID: 1694069791}
   - component: {fileID: 1694069793}
+  - component: {fileID: 1694069794}
   m_Layer: 0
   m_Name: Cherecters
   m_TagString: Untagged
@@ -1194,20 +1194,6 @@ Transform:
   - {fileID: 1667486355}
   m_Father: {fileID: 1884064614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1694069789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694069786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1175de04e15b34b7f9653bcbd56260bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characters: []
-  index: 0
 --- !u!54 &1694069791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1273,6 +1259,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1694069794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694069786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82377c9fe17714a49bb518dd78cf72c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scinIndex: 0
+  scins:
+  - {fileID: 529043418}
+  - {fileID: 110290481}
+  - {fileID: 1652551731}
 --- !u!1 &1884064609
 GameObject:
   m_ObjectHideFlags: 0
