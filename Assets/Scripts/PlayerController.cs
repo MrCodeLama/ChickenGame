@@ -5,18 +5,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public SpeedController speedcntrl;
+   //public SpeedController speedcontroller;
+   
    public float speed;
    public Rigidbody rb;
    public bool _isOnGround = false;
    public int index;
    public GameObject[] characters;
+   private SpeedController speedcontroller;
+   
    private void Start()
    {
+      speedcontroller = Camera.main.gameObject.GetComponent<SpeedController>();
+      
       index = transform.GetComponent<PlayerSelect>().index;
       characters = transform.GetComponent<PlayerSelect>().characters;
-      
-      speedcntrl = Camera.main.gameObject.GetComponent<SpeedController>();
       rb = GetComponent<Rigidbody>();
    }
 
@@ -27,15 +30,12 @@ public class PlayerController : MonoBehaviour
          rb.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
-      UpdateSpeed();
-      
+      UpdateAnimSpeed();
    }
    
-   
-
-   private void UpdateSpeed()
+   private void UpdateAnimSpeed()
    {
-      speed = speedcntrl.speed;
+      speed = speedcontroller.speed;
       characters[index].GetComponent<Animator>().speed = speed*0.7f;
    }
    

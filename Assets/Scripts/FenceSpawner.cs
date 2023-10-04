@@ -25,7 +25,18 @@ public class FenceSpawner : MonoBehaviour
         {
             SpawnFence();
             //nextSpawnTime = Random.Range(speed*5f, speed*10f);
-            nextSpawnTime = speed * 2f;
+            if (speed < 0.3f)
+            {
+                nextSpawnTime = Random.Range(2f / (speed * 4.1f), 2f / (speed * 4.1f) + 2f);
+            }
+            else if(speed < 1f)
+            {
+                nextSpawnTime = Random.Range(2f/(speed + 0.7f), 2f/(speed + 0.7f) + 2f);
+            }
+            else
+            {
+                nextSpawnTime = Random.Range(2f/(speed), 2f/(speed) + 2f);
+            }
         }
 
         UpdateSpeed();

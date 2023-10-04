@@ -22,6 +22,7 @@ public class PlayerSelect : MonoBehaviour
         foreach (GameObject go in characters)
         {
             go.SetActive(false);
+            
         }
 
         if (characters[index])
