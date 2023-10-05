@@ -5,21 +5,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+   public bool gm = false;
    //public SpeedController speedcontroller;
-   
+   public GameOverScreen gameOverScreen;
    public float speed;
    public Rigidbody rb;
    public bool _isOnGround = false;
-   public int index;
-   public GameObject[] characters;
+   public int scinIndex;
+   public GameObject[] scins;
    private SpeedController speedcontroller;
+   public int Score = 0;
    
    private void Start()
    {
       speedcontroller = Camera.main.gameObject.GetComponent<SpeedController>();
       
-      index = transform.GetComponent<PlayerSelect>().index;
-      characters = transform.GetComponent<PlayerSelect>().characters;
+      scinIndex = transform.GetComponent<ScinControll>().scinIndex;
+      scins = transform.GetComponent<ScinControll>().scins;
       rb = GetComponent<Rigidbody>();
    }
 
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
    private void UpdateAnimSpeed()
    {
       speed = speedcontroller.speed;
-      characters[index].GetComponent<Animator>().speed = speed*0.7f;
+      scins[scinIndex].GetComponent<Animator>().speed = speed*0.7f;
    }
    
    private void OnCollisionEnter(Collision col)
@@ -45,5 +47,16 @@ public class PlayerController : MonoBehaviour
       {
          _isOnGround = true;
       }
+      
+      if (col.gameObject.name == "Fence(Clone)")
+      {
+         gm = true;
+         GameOver();
+      }
+   }
+
+   public void GameOver()
+   {
+      gameOverScreen.Setup(Score);
    }
 }

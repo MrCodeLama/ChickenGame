@@ -35,7 +35,7 @@ public class FenceSpawner : MonoBehaviour
             }
             else
             {
-                nextSpawnTime = Random.Range(2f/(speed), 2f/(speed) + 2f);
+                nextSpawnTime = Random.Range(2f/(speed), 2f/(speed) + 1f);
             }
         }
 
