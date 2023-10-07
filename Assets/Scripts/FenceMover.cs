@@ -8,7 +8,6 @@ public class FenceMover : MonoBehaviour
     public SpeedController speedcontroller;
     private Camera mainCamera;
     public Vector3 movement;
-
     void Start()
     {
         mainCamera = Camera.main;
@@ -39,5 +38,4 @@ public class FenceMover : MonoBehaviour
         Vector3 viewportPos = mainCamera.WorldToViewportPoint(transform.position);
         return (viewportPos.x > -0.2f);
     }
-    
 }

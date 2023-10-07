@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class PlayerSelect : MonoBehaviour
+public class PlayerSelector : MonoBehaviour
 {
     public GameObject[] characters;
     public int index;

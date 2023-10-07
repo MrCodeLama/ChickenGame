@@ -5,29 +5,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public bool gm = false;
-   public GameOverScreen gameOverScreen;
-   public float speed;
-   public Rigidbody rb;
-   public bool _isOnGround = false;
-   public int scinIndex;
-   public GameObject[] scins;
-   private SpeedController speedcontroller;
-   public int Score = 0;
+   public SoundManager soundManager;
+   public int score;
+   public bool gameover = false;
+   private bool _isOnGround;
+   private int skinIndex;
+   private float speed;
+   private Rigidbody rb;
+   private GameObject[] skins;
+   private SpeedController speedController;
+   public GameOverScreen gameOverScreen;  
    
    private void Start()
    {
-      speedcontroller = Camera.main.gameObject.GetComponent<SpeedController>();
-      
-      scinIndex = transform.GetComponent<ScinControll>().scinIndex;
-      scins = transform.GetComponent<ScinControll>().scins;
+      soundManager = transform.GetComponent<SoundManager>();
+      //skinIndex = transform.GetComponent<SkinControll>().skinIndex;
+      //skins = transform.GetComponent<SkinControll>().skins;
+      speedController = Camera.main.gameObject.GetComponent<SpeedController>();
       rb = GetComponent<Rigidbody>();
+      _isOnGround = false;
+      score = 0;
    }
 
    private void Update()
    {
       if (Input.GetMouseButtonDown(0) && _isOnGround)
       {
+         soundManager.PlaySound();
          rb.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
@@ -36,26 +40,25 @@ public class PlayerController : MonoBehaviour
    
    private void UpdateAnimSpeed()
    {
-      speed = speedcontroller.speed;
-      scins[scinIndex].GetComponent<Animator>().speed = speed*0.7f;
+      speed = speedController.speed;
+      skins[skinIndex].GetComponent<Animator>().speed = speed*0.7f;
    }
    
    private void OnCollisionEnter(Collision col)
    {
+      if (col.gameObject.tag == "Fence")
+      {
+         gameover = true;
+         GameOver();
+      }
       if (col.gameObject.name == "Ground")
       {
          _isOnGround = true;
-      }
-      
-      if (col.gameObject.name == "Fence(Clone)")
-      {
-         gm = true;
-         GameOver();
       }
    }
 
    public void GameOver()
    {
-      gameOverScreen.Setup(Score);
+      gameOverScreen.Setup(score);
    }
 }
