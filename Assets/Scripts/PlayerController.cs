@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
    public bool gm = false;
-   //public SpeedController speedcontroller;
    public GameOverScreen gameOverScreen;
    public float speed;
    public Rigidbody rb;
