@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
     public int money;
     public bool[] chickenUnlocked = new bool[3] { true, false, false};
     public int highScore;
-    
+        
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -37,6 +37,7 @@ public class SaveManager : MonoBehaviour
             currentChicken = data.currentChicken;
             chickenUnlocked = data.chickenUnlocked;
             highScore = data.highScore;
+
             if (data.chickenUnlocked ==  null)
                 chickenUnlocked = new bool[3] { true, false, false,};
 
@@ -54,7 +55,7 @@ public class SaveManager : MonoBehaviour
         data.money = money;
         data.currentChicken = currentChicken;
         data.chickenUnlocked = chickenUnlocked;
-
+        data.highScore = highScore;
         bf.Serialize(file, data);
         file.Close();
     }
