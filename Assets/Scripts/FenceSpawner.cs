@@ -14,7 +14,7 @@ public class FenceSpawner : MonoBehaviour
         //nextSpawnTime = Random.Range(speed, speed*10f);
         nextSpawnTime = speed * 0f;
 
-        speedcntrl = Camera.main.gameObject.GetComponent<SpeedController>();
+        speedcntrl = Camera.main.GetComponent<SpeedController>();
         UpdateSpeed();
     }
     
@@ -31,11 +31,11 @@ public class FenceSpawner : MonoBehaviour
             }
             else if(speed < 1f)
             {
-                nextSpawnTime = Random.Range(2f/(speed + 0.7f), 2f/(speed + 0.7f) + 2f);
+                nextSpawnTime = Random.Range(1.5f/(speed + 0.7f), 1.5f/(speed + 0.7f) + 1.5f);
             }
             else
             {
-                nextSpawnTime = Random.Range(2f/(speed), 2f/(speed) + 1f);
+                nextSpawnTime = Random.Range(1.5f/(speed), 1.5f/(speed) + 0.5f);
             }
         }
 

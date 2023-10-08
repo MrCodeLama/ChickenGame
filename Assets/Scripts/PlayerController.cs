@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public int highScore;
    public bool _isGameOver;
    public int score = 0;
    private bool _isOnGround = false;
@@ -19,7 +18,8 @@ public class PlayerController : MonoBehaviour
       _isGameOver = false;
       rb = GetComponent<Rigidbody>();
       soundManager = GameObject.Find("Jump").GetComponent<SoundManager>();
-      scoreManager = GameObject.FindWithTag("Score").GetComponent<ScoreManager>();
+      scoreManager = Camera.main.GetComponent<ScoreManager>();
+     
    }
 
    private void Update()
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
       {
          _isGameOver = true;
          Camera.main.GetComponent<PlayMode>()._isGameOver = true;
-         score = GameObject.Find("Score").GetComponent<ScoreManager>().score;
+         score = Camera.main.GetComponent<ScoreManager>().score;
          GameOver();
       }
    }
@@ -56,8 +56,6 @@ public class PlayerController : MonoBehaviour
    private void GameOver()
    {
       GameObject.Find("Fences").GetComponent<FenceSpawner>().enabled = false;
-      
       gameOverScreen.Setup(score);
-      
    }
 }

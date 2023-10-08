@@ -9,7 +9,7 @@ public class AnimationController : MonoBehaviour
     private SpeedController speedController;
     void Start()
     {
-        speedController = GameObject.Find("Speed").gameObject.GetComponent<SpeedController>();
+        speedController = Camera.main.GetComponent<SpeedController>();
     }
     void Update()
     {

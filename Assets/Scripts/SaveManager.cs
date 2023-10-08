@@ -12,7 +12,8 @@ public class SaveManager : MonoBehaviour
     public int currentChicken;
     public int money;
     public bool[] chickenUnlocked = new bool[3] { true, false, false};
-
+    public int highScore;
+    
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -35,7 +36,7 @@ public class SaveManager : MonoBehaviour
             money = data.money;
             currentChicken = data.currentChicken;
             chickenUnlocked = data.chickenUnlocked;
-
+            highScore = data.highScore;
             if (data.chickenUnlocked ==  null)
                 chickenUnlocked = new bool[3] { true, false, false,};
 
@@ -48,7 +49,8 @@ public class SaveManager : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         PlayerData_Storage data = new PlayerData_Storage();
-
+        
+        data.highScore = highScore;
         data.money = money;
         data.currentChicken = currentChicken;
         data.chickenUnlocked = chickenUnlocked;
@@ -64,4 +66,5 @@ class PlayerData_Storage
     public int currentChicken;
     public int money;
     public bool[] chickenUnlocked;
+    public int highScore;
 }

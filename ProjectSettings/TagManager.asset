@@ -8,6 +8,7 @@ TagManager:
   - AudioPlayer
   - Skin
   - Score
+  - Speed
   layers:
   - Default
   - TransparentFX

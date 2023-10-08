@@ -13,7 +13,7 @@ public class FloorMover : MonoBehaviour
 
     void Start()
     {
-        speedcontroller = GameObject.Find("Speed").gameObject.GetComponent<SpeedController>();
+        speedcontroller = Camera.main.GetComponent<SpeedController>();
         for (int i = 0; i < 2; i++)
         {
             floors.Add(transform.GetChild(i).gameObject);

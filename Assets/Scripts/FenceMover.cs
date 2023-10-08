@@ -12,7 +12,7 @@ public class FenceMover : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        speedcontroller = GameObject.Find("Speed").gameObject.GetComponent<SpeedController>();
+        speedcontroller = mainCamera.gameObject.GetComponent<SpeedController>();
         UpdateParameters();
     }
 
