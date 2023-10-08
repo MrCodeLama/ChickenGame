@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -881,7 +881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.9}
+  m_AnchoredPosition: {x: 0, y: 2.8999996}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555430789
@@ -2078,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259724805}
   - component: {fileID: 1259724804}
+  - component: {fileID: 1259724806}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2124,6 +2125,20 @@ Transform:
   - {fileID: 856531160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259724806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259724803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7d4a7dcfe8b4f90b956ce79378b187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevousButton: {fileID: 0}
+  nextButton: {fileID: 0}
 --- !u!1001 &1459573737
 PrefabInstance:
   m_ObjectHideFlags: 0
