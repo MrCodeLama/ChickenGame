@@ -9,9 +9,11 @@ public class FloorMover : MonoBehaviour
     private float removex = -30.6f;
     public List<GameObject> floors;
     public Vector3 movement;
+    private bool _isGameOver;
+
     void Start()
     {
-        speedcontroller = Camera.main.gameObject.GetComponent<SpeedController>();
+        speedcontroller = GameObject.Find("Speed").gameObject.GetComponent<SpeedController>();
         for (int i = 0; i < 2; i++)
         {
             floors.Add(transform.GetChild(i).gameObject);
@@ -20,8 +22,12 @@ public class FloorMover : MonoBehaviour
 
     void Update()
     {
-        UpdateParameters();
-        moveFloor();
+        _isGameOver = Camera.main.GetComponent<PlayMode>()._isGameOver;
+        if (!_isGameOver)
+        {
+            UpdateParameters();
+            moveFloor();
+        }
     }
 
     private void moveFloor()

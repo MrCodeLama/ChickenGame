@@ -4,32 +4,37 @@ using UnityEngine;
 
 public class FenceMover : MonoBehaviour
 {
-    public float speed = 0.2f;
     public SpeedController speedcontroller;
     private Camera mainCamera;
     public Vector3 movement;
+    private bool _isGameOver;
+
     void Start()
     {
         mainCamera = Camera.main;
-        speedcontroller = mainCamera.gameObject.GetComponent<SpeedController>();
+        speedcontroller = GameObject.Find("Speed").gameObject.GetComponent<SpeedController>();
         UpdateParameters();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(movement);
-        if (!IsVisibleByCamera())
+        _isGameOver = mainCamera.GetComponent<PlayMode>()._isGameOver;
+
+        if (!_isGameOver)
         {
-            // Destroy the object
-            Destroy(gameObject);
+            transform.Translate(movement);
+            if (!IsVisibleByCamera())
+            {
+                // Destroy the object
+                Destroy(gameObject);
+            }
+            UpdateParameters();
         }
-        UpdateParameters();
     }
     
     private void UpdateParameters()
     {
-        speed = speedcontroller.speed;
         movement = speedcontroller.movement;
     }
     
