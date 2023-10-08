@@ -5,60 +5,59 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public SoundManager soundManager;
-   public int score;
-   public bool gameover = false;
-   private bool _isOnGround;
-   private int skinIndex;
-   private float speed;
+   public int highScore;
+   public bool _isGameOver;
+   public int score = 0;
+   private bool _isOnGround = false;
    private Rigidbody rb;
-   private GameObject[] skins;
-   private SpeedController speedController;
-   public GameOverScreen gameOverScreen;  
+   public GameOverScreen gameOverScreen;
+   public SoundManager soundManager;
+   public ScoreManager scoreManager;
    
    private void Start()
    {
-      soundManager = transform.GetComponent<SoundManager>();
-      //skinIndex = transform.GetComponent<SkinControll>().skinIndex;
-      //skins = transform.GetComponent<SkinControll>().skins;
-      speedController = Camera.main.gameObject.GetComponent<SpeedController>();
+      _isGameOver = false;
       rb = GetComponent<Rigidbody>();
-      _isOnGround = false;
-      score = 0;
+      soundManager = GameObject.Find("Jump").GetComponent<SoundManager>();
+      scoreManager = GameObject.FindWithTag("Score").GetComponent<ScoreManager>();
    }
 
    private void Update()
    {
-      if (Input.GetMouseButtonDown(0) && _isOnGround)
+      if (Input.GetMouseButtonDown(0) && _isOnGround && !_isGameOver)
       {
          soundManager.PlaySound();
          rb.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
-      UpdateAnimSpeed();
-   }
-   
-   private void UpdateAnimSpeed()
-   {
-      speed = speedController.speed;
-      skins[skinIndex].GetComponent<Animator>().speed = speed*0.7f;
    }
    
    private void OnCollisionEnter(Collision col)
    {
-      if (col.gameObject.tag == "Fence")
+      _isOnGround = col.gameObject.name == "Ground";
+   }
+
+   private void OnTriggerEnter(Collider other)
+   {
+      if (other.gameObject.name == "CheckPoint")
       {
-         gameover = true;
-         GameOver();
+         scoreManager.IncrementScore();
       }
-      if (col.gameObject.name == "Ground")
+      
+      if (other.gameObject.tag == "Fence")
       {
-         _isOnGround = true;
+         _isGameOver = true;
+         Camera.main.GetComponent<PlayMode>()._isGameOver = true;
+         score = GameObject.Find("Score").GetComponent<ScoreManager>().score;
+         GameOver();
       }
    }
 
-   public void GameOver()
+   private void GameOver()
    {
+      GameObject.Find("Fences").GetComponent<FenceSpawner>().enabled = false;
+      
       gameOverScreen.Setup(score);
+      
    }
 }
