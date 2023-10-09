@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Menumanager : MonoBehaviour
 {
-    public GameObject settingsPanel;
-     
     public void PlayGame()
     { 
         Invoke("PlayGameDelay", 0.15f);
@@ -24,24 +22,6 @@ public class Menumanager : MonoBehaviour
     void ExitGameDelay()
     {
         Application.Quit();
-    }
-    
-    public void SettingsPanel()
-    {
-        Invoke("SettingsPanelDelay", 0.15f);
-    }
-    void SettingsPanelDelay()
-    {
-        settingsPanel.SetActive(true);
-    }
-
-    public void Exit()
-    {
-        Invoke("ExitDelay", 0.15f);
-    }
-    void ExitDelay()
-    {
-        settingsPanel.SetActive(false);
     }
 
     public void SkinChange()
@@ -60,14 +40,5 @@ public class Menumanager : MonoBehaviour
     void BackToMenuDelay()
     {
         Application.LoadLevel("Menu");
-    }
-    
-    public void Shop()
-    { 
-        Invoke("ShopDelay", 0.15f);
-    }
-    void ShopDelay()
-    {
-        Application.LoadLevel("Shop");
     }
 }

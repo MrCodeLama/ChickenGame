@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
    public bool _isGameOver;
-   public int score = 0;
+   private int score = 0;
    private bool _isOnGround = false;
    private Rigidbody rb;
    public GameOverScreen gameOverScreen;
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
       rb = GetComponent<Rigidbody>();
       soundManager = GameObject.Find("Jump").GetComponent<SoundManager>();
       scoreManager = Camera.main.GetComponent<ScoreManager>();
-     
    }
 
    private void Update()
@@ -27,7 +26,7 @@ public class PlayerController : MonoBehaviour
       if (Input.GetMouseButtonDown(0) && _isOnGround && !_isGameOver)
       {
          soundManager.PlaySound();
-         rb.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
+         rb.AddForce(new Vector3(0, 6f, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
    }
@@ -40,9 +39,7 @@ public class PlayerController : MonoBehaviour
    private void OnTriggerEnter(Collider other)
    {
       if (other.gameObject.name == "CheckPoint")
-      {
          scoreManager.IncrementScore();
-      }
       
       if (other.gameObject.tag == "Fence")
       {

@@ -51,7 +51,6 @@ public class SaveManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
         PlayerData_Storage data = new PlayerData_Storage();
         
-        data.highScore = highScore;
         data.money = money;
         data.currentChicken = currentChicken;
         data.chickenUnlocked = chickenUnlocked;
