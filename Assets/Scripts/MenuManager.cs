@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Menumanager : MonoBehaviour
 {
+    public float delay = 0.2f;
     public void PlayGame()
     { 
-        Invoke("PlayGameDelay", 0.15f);
+        Invoke("PlayGameDelay", delay);
     }
     void PlayGameDelay()
     {
@@ -17,7 +18,7 @@ public class Menumanager : MonoBehaviour
 
     public void ExitGame()
     {
-        Invoke("ExitGameDelay", 0.15f);
+        Invoke("ExitGameDelay", delay);
     }
     void ExitGameDelay()
     {
@@ -26,7 +27,7 @@ public class Menumanager : MonoBehaviour
 
     public void SkinChange()
     {
-        Invoke("SkinChangeDelay", 0.15f);
+        Invoke("SkinChangeDelay", delay);
     }
     void SkinChangeDelay()
     {
@@ -35,7 +36,7 @@ public class Menumanager : MonoBehaviour
     
     public void BackToMenu()
     {
-        Invoke("BackToMenuDelay", 0.15f);
+        Invoke("BackToMenuDelay", delay);
     }
     void BackToMenuDelay()
     {

@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     public BoxCollider Checkpoint;
     private bool _isGameOver;
     private int highScore;
+    public bool _isNewHighScore;
     
     private void Start()
     {
@@ -27,10 +28,12 @@ public class ScoreManager : MonoBehaviour
         
         if (!_isGameOver)
         {
+            _isNewHighScore = highScore < score;
             scoreText.text = "Score: " + score.ToString();
         }
         else if (highScore <= score)
         {
+            
             setNewHighScore();
         }
     }
