@@ -14,6 +14,6 @@ public class MoneyCounter : MonoBehaviour
 
     private void Update()
     {
-        txt.text = SaveManager.instance.money+"";
+        txt.text = SaveManager.instance.money.ToString();
     }
 }

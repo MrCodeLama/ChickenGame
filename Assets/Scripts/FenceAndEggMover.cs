@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FenceMover : MonoBehaviour
+public class FenceAndEggMover : MonoBehaviour
 {
     public SpeedController speedcontroller;
     private Camera mainCamera;

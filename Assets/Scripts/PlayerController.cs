@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+   public bool test = false;
    public bool _isGameOver;
    private int score = 0;
    private bool _isOnGround = false;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
    public GameOverScreen gameOverScreen;
    public SoundManager soundManager;
    public ScoreManager scoreManager;
+   public MoneyManager moneyManager;
    
    private void Start()
    {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
       rb = GetComponent<Rigidbody>();
       soundManager = GameObject.Find("Jump").GetComponent<SoundManager>();
       scoreManager = Camera.main.GetComponent<ScoreManager>();
+      moneyManager = Camera.main.GetComponent<MoneyManager>();
    }
 
    private void Update()
@@ -40,6 +43,13 @@ public class PlayerController : MonoBehaviour
    {
       if (other.gameObject.name == "CheckPoint")
          scoreManager.IncrementScore();
+
+      if (other.gameObject.tag == "Egg")
+      {
+         test = true;
+         moneyManager.AddMoney();
+         Destroy(other.gameObject);
+      }
       
       if (other.gameObject.tag == "Fence")
       {
