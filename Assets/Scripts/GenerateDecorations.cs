@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GenerateDecorations : MonoBehaviour
@@ -45,9 +46,13 @@ public class GenerateDecorations : MonoBehaviour
             
             GameObject newDecor = Instantiate(decorations[index], pos1, Quaternion.identity);
             newDecor.transform.SetParent(transform);
+            newDecor.GameObject().transform.GetChild(0).rotation =
+                Quaternion.Euler(0f, rotationAngles[Random.Range(0, rotationAngles.Length)], 0f);
             
             newDecor = Instantiate(decorations[index], pos2, Quaternion.identity);
             newDecor.transform.SetParent(transform);
+            newDecor.GameObject().transform.GetChild(0).rotation =
+                Quaternion.Euler(0f, rotationAngles[Random.Range(0, rotationAngles.Length)], 0f);
             //Quaternion.Euler(0f, rotationAngles[Random.Range(0, rotationAngles.Length)], 0f )
         }
     }
