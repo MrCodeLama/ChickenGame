@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
    public bool test = false;
    public bool _isGameOver;
    private int score = 0;
-   private bool _isOnGround = false;
+   public bool _isOnGround = false;
    private Rigidbody rb;
    public GameOverScreen gameOverScreen;
-   public SoundManager soundManager;
+   public SoundManager jumpSound;
+   public SoundManager collectSound;
    public ScoreManager scoreManager;
    public MoneyManager moneyManager;
    
@@ -19,7 +20,10 @@ public class PlayerController : MonoBehaviour
    {
       _isGameOver = false;
       rb = GetComponent<Rigidbody>();
-      soundManager = GameObject.Find("Jump").GetComponent<SoundManager>();
+      
+      jumpSound = GameObject.Find("Jump").GetComponent<SoundManager>();
+      collectSound = GameObject.Find("Collect").GetComponent<SoundManager>();
+      
       scoreManager = Camera.main.GetComponent<ScoreManager>();
       moneyManager = Camera.main.GetComponent<MoneyManager>();
    }
@@ -28,7 +32,7 @@ public class PlayerController : MonoBehaviour
    {
       if (Input.GetMouseButtonDown(0) && _isOnGround && !_isGameOver)
       {
-         soundManager.PlaySound();
+         jumpSound.PlaySound();
          rb.AddForce(new Vector3(0, 6f, 0), ForceMode.Impulse);
          _isOnGround = false;
       }
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
       if (other.gameObject.tag == "Egg")
       {
+         collectSound.PlaySound();
          test = true;
          moneyManager.AddMoney();
          Destroy(other.gameObject);
