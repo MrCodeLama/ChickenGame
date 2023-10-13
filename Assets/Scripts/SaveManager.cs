@@ -20,7 +20,7 @@ public class SaveManager : MonoBehaviour
             Destroy(gameObject);
         else
             instance = this;
-
+        
         DontDestroyOnLoad(gameObject);
         Load();
     }
@@ -40,7 +40,6 @@ public class SaveManager : MonoBehaviour
 
             if (data.chickenUnlocked ==  null)
                 chickenUnlocked = new bool[3] { true, false, false,};
-
             file.Close();
         }
     }
