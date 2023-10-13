@@ -11,12 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Waredrobe.unity
     guid: 4d173872af5de4e8a8e2e5e092c6757d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Shop.unity
     guid: cc7f8efe0f3db4e918147d3bcdc639af
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6dc419ccc7c46fb4c9550ba7f4fd2e6b,
+      type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 46f394cd91f976849baaaebcd6c9c886, type: 2}
