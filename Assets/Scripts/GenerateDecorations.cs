@@ -36,6 +36,7 @@ public class GenerateDecorations : MonoBehaviour
         numberOfElements = Random.Range(2,4);
         for (int i = 0; i < numberOfElements; i++)
         {
+            
             float adder = Random.Range(3f, 10f) * (Random.Range(1, 2) % 2 == 0 ? -1f : 1f);
             Vector3 pos1 = new Vector3(20f + adder, -4, -1f * Random.Range(2f, 10f));
             
