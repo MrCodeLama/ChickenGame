@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedController : MonoBehaviour
 {
-    public float speed = 0.2f;
+    public float speed = 0.5f;
     public Vector3 movement;
     private bool _isGameOver;
     private float deltaSpeed;
@@ -14,7 +14,7 @@ public class SpeedController : MonoBehaviour
         _isGameOver = Camera.main.GetComponent<PlayMode>()._isGameOver;
         if (!_isGameOver)
         {
-            deltaSpeed = Time.deltaTime * 0.1f;
+            deltaSpeed = Time.deltaTime * 0.03f;
             if (_isIncreasing)
             {
                 speed += deltaSpeed;
