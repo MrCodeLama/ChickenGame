@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
    public bool _isGameOver;
    private int score = 0;
    public bool _isOnGround = false;
+   public GameObject fireWorks;
    private Rigidbody rb;
    public GameOverScreen gameOverScreen;
    public SoundManager jumpSound;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
          jumpSound.PlaySound();
          rb.AddForce(new Vector3(0, 6f, 0), ForceMode.Impulse);
          _isOnGround = false;
+         
       }
    }
    
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
       if (other.gameObject.tag == "Egg")
       {
          collectSound.PlaySound();
+         createFireworks();
          test = true;
          moneyManager.AddMoney();
          Destroy(other.gameObject);
@@ -69,5 +72,10 @@ public class PlayerController : MonoBehaviour
    {
       GameObject.Find("Fences").GetComponent<FenceSpawner>().enabled = false;
       gameOverScreen.Setup(score);
+   }
+
+   private void createFireworks()
+   {
+      Instantiate(fireWorks, transform.position + new Vector3(0.5f,0,0), Quaternion.identity);
    }
 }

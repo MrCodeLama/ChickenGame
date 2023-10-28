@@ -9,6 +9,10 @@ TagManager:
   - Skin
   - Score
   - Speed
+  - Egg
+  - SFX
+  - fireWorks
+  - Dirt
   layers:
   - Default
   - TransparentFX
