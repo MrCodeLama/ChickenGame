@@ -8,11 +8,12 @@ public class EggSpawner : MonoBehaviour
     public Collider[] colliders;
     public GameObject commonEgg;
     private float nextSpawnTime;
-    
+    public SpeedController speedcntrl;
     
     void Start()
     {
         //nextSpawnTime = Random.Range(speed, speed*10f);
+        speedcntrl = Camera.main.GetComponent<SpeedController>();
         nextSpawnTime = 2f;
     }
     
@@ -21,9 +22,9 @@ public class EggSpawner : MonoBehaviour
         nextSpawnTime -= Time.deltaTime;
         if (nextSpawnTime <= 0)
         {
-            nextSpawnTime = Random.Range(1f,2f);
+            nextSpawnTime = Random.Range(1/(speedcntrl.speed * 3),1/(speedcntrl.speed * 3) + 0.2f);
             
-            colliders = Physics.OverlapBox(new Vector3(7f, 0, 0f), new Vector3(1.5f, 0.3f, 0.3f));
+            colliders = Physics.OverlapBox(new Vector3(7f, 0, 0f), new Vector3(1f, 0.3f, 0.3f));
             if (colliders.Length == 0)
             {
                 test = colliders.Length;
