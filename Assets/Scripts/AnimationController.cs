@@ -5,22 +5,22 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     private bool _isGameOver;
-    public bool _isOnGround;
-    public float speed;
-    private SpeedController speedController;
+    private bool _isOnGround;
+    private float speed;
+    private SpeedController speedCntrl;
     private Animator playerAnimator;
+    private PlayerController playerCntrl;
     void Start()
     {
-        speedController = Camera.main.GetComponent<SpeedController>();
+        speedCntrl = Camera.main.GetComponent<SpeedController>();
         playerAnimator = GameObject.Find("Player").GetComponentInChildren<Animator>();
+        playerCntrl = GameObject.Find("Player").GetComponent<PlayerController>();
     }
     void Update()
     {
-        _isOnGround = GameObject.Find("Player").GetComponentInChildren<PlayerController>()._isOnGround;
+        _isOnGround = playerCntrl._isOnGround;
         _isGameOver = Camera.main.GetComponent<PlayMode>()._isGameOver;
-        //speed = (_isGameOver || !_isOnGround) ? 0f : speedController.speed;
-        //speed = (_isGameOver && _isOnGround) ? 0f : speedController.speed;
-        speed = (!_isGameOver && _isOnGround) ? speedController.speed : 0.2f;
+        speed = (!_isGameOver && _isOnGround) ? speedCntrl.speed : 0.2f;
         speed = (_isGameOver) ? 0 : speed;
         playerAnimator.speed = speed*0.8f;
     }

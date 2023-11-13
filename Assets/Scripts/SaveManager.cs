@@ -8,7 +8,6 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance { get; private set; }
 
-    //What we want to save
     public int currentChicken;
     public int money;
     public bool[] chickenUnlocked = new bool[3] { true, false, false};

@@ -4,37 +4,26 @@ using UnityEngine;
 
 public class ElementsMover : MonoBehaviour
 {
-    public SpeedController speedcontroller;
+    private SpeedController speedCntrl;
     private Camera mainCamera;
-    public Vector3 movement;
-    private bool _isGameOver;
-
+    private PlayMode playMode;
+    
     void Start()
     {
         mainCamera = Camera.main;
-        speedcontroller = mainCamera.gameObject.GetComponent<SpeedController>();
-        UpdateParameters();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        _isGameOver = mainCamera.GetComponent<PlayMode>()._isGameOver;
-
-        if (!_isGameOver)
-        {
-            transform.Translate(movement);
-            if (!IsVisibleByCamera())
-            {
-                // Destroy the object
-                Destroy(gameObject);
-            }
-            UpdateParameters();
-        }
+        speedCntrl = mainCamera.gameObject.GetComponent<SpeedController>();
+        playMode = mainCamera.GetComponent<PlayMode>();
     }
     
-    private void UpdateParameters()
-    {
-        movement = speedcontroller.movement;
+    void Update() {
+        if (!playMode._isGameOver)
+        {
+            transform.Translate(speedCntrl.movement);
+            if (!IsVisibleByCamera())
+            {
+                Destroy(gameObject);
+            }
+        }
     }
     
     private bool IsVisibleByCamera()

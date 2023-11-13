@@ -5,7 +5,6 @@ public class EggBounce : MonoBehaviour
     public float minY = 0f; 
     public float maxY = 5f; 
     public float speed = 2f; 
-
     private bool goingUp = true;
 
     void Update()

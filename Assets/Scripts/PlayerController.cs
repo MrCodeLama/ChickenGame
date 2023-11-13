@@ -1,21 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public bool test = false;
    public bool _isGameOver;
-   private int score = 0;
+   private int score;
    public bool _isOnGround = false;
    public GameObject fireWorks;
+   public GameObject fireWorksL;
    private Rigidbody rb;
    public GameOverScreen gameOverScreen;
-   public SoundManager jumpSound;
-   public SoundManager collectSound;
-   public ScoreManager scoreManager;
-   public MoneyManager moneyManager;
+   private SoundManager jumpSound;
+   private SoundManager collectSound;
+   private ScoreManager scoreManager;
+   private MoneyManager moneyManager;
+   public Animator tab10;
+   public Animator tab1;
+   private PlayMode playMode;
+   private FenceSpawner fenceSpawner;
    
    private void Start()
    {
@@ -27,6 +32,9 @@ public class PlayerController : MonoBehaviour
       
       scoreManager = Camera.main.GetComponent<ScoreManager>();
       moneyManager = Camera.main.GetComponent<MoneyManager>();
+
+      playMode = Camera.main.GetComponent<PlayMode>();
+      fenceSpawner = GameObject.Find("Fences").GetComponent<FenceSpawner>();
    }
 
    private void Update()
@@ -36,7 +44,6 @@ public class PlayerController : MonoBehaviour
          jumpSound.PlaySound();
          rb.AddForce(new Vector3(0, 6f, 0), ForceMode.Impulse);
          _isOnGround = false;
-         
       }
    }
    
@@ -53,29 +60,43 @@ public class PlayerController : MonoBehaviour
       if (other.gameObject.tag == "Egg")
       {
          collectSound.PlaySound();
-         createFireworks();
-         test = true;
-         moneyManager.AddMoney();
+         createFireworks(false);
+         moneyManager.AddMoney(false);
          Destroy(other.gameObject);
+         tab1.Rebind();
+         tab10.Rebind();
+         tab1.Play("New Animation");
+      }
+      
+      if (other.gameObject.tag == "legEgg")
+      {
+         collectSound.PlaySound();
+         createFireworks(true);
+         moneyManager.AddMoney(true);
+         Destroy(other.gameObject);
+         tab1.Rebind();
+         tab10.Rebind();
+         tab10.Play("New Animation");
       }
       
       if (other.gameObject.tag == "Fence")
       {
          _isGameOver = true;
-         Camera.main.GetComponent<PlayMode>()._isGameOver = true;
-         score = Camera.main.GetComponent<ScoreManager>().score;
+         playMode._isGameOver = true;
+         score = scoreManager.score;
          GameOver();
       }
    }
+   
 
    private void GameOver()
    {
-      GameObject.Find("Fences").GetComponent<FenceSpawner>().enabled = false;
+      fenceSpawner.enabled = false;
       gameOverScreen.Setup(score);
    }
 
-   private void createFireworks()
+   private void createFireworks(bool _isLegendary)
    {
-      Instantiate(fireWorks, transform.position + new Vector3(0.5f,0,0), Quaternion.identity);
+      Instantiate((_isLegendary) ? fireWorksL : fireWorks, transform.position + new Vector3(0.5f,0,0), Quaternion.identity);
    }
 }

@@ -6,17 +6,17 @@ using UnityEngine;
 public class GenerateDecorations : MonoBehaviour
 {
     public GameObject[] decorations;
-    public float speed = 0.2f;
-    public SpeedController speedcntrl;
-    public int numberOfElements;
-    public int index;
-    private float[] rotationAngles = { 0f, 90f, 180f, 270f, 360f };
+    private float speed = 0.2f;
+    private SpeedController speedCntrl;
+    private int numberOfElements;
+    private int index;
+    private float[] rotationAngles = { 0f, 90f, 180f, 270f};
     private float nextSpawnTime;
     void Start()
     {
-        speedcntrl = Camera.main.GetComponent<SpeedController>();
-        UpdateSpeed();
-        nextSpawnTime = speed * 0f;
+        speedCntrl = Camera.main.GetComponent<SpeedController>();
+        speed = speedCntrl.speed;
+        nextSpawnTime = 0.0f;
     }
 
     void Update()
@@ -25,10 +25,10 @@ public class GenerateDecorations : MonoBehaviour
         if (nextSpawnTime <= 0)
         {
             GenerateDecorLine();
-            nextSpawnTime = 1f/speed;
+            nextSpawnTime = 1.0f/speed;
         }
 
-        UpdateSpeed();
+        speed = speedCntrl.speed;
     }
 
     private void GenerateDecorLine()
@@ -54,12 +54,6 @@ public class GenerateDecorations : MonoBehaviour
             newDecor.transform.SetParent(transform);
             newDecor.GameObject().transform.GetChild(0).rotation =
                 Quaternion.Euler(0f, rotationAngles[Random.Range(0, rotationAngles.Length)], 0f);
-            //Quaternion.Euler(0f, rotationAngles[Random.Range(0, rotationAngles.Length)], 0f )
         }
-    }
-    
-    private void UpdateSpeed()
-    {
-        speed = speedcntrl.speed;
     }
 }

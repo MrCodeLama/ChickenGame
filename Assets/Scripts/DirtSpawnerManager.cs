@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class DirtSpawnerManager : MonoBehaviour
 {
-    private SpeedController speedcntrl;
-    private PlayerController playercntrl;
+    private SpeedController speedCntrl;
+    private PlayerController playerCntrl;
     private GameObject dirt;
-    public float speed;
-    public bool _isOnGround;
-    public bool _isGameOver;
+    private float speed;
+    private bool _isOnGround;
+    private bool _isGameOver;
     void Start()
     {
-        speedcntrl = gameObject.GetComponent<SpeedController>();
-        playercntrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        speedCntrl = gameObject.GetComponent<SpeedController>();
+        playerCntrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         dirt = GameObject.FindGameObjectWithTag("Dirt");
     }
 
     void Update()
     {
-        _isGameOver = playercntrl._isGameOver;
+        _isGameOver = playerCntrl._isGameOver;
         if (!_isGameOver)
         {
-            _isOnGround = playercntrl._isOnGround;
+            _isOnGround = playerCntrl._isOnGround;
             dirt.GetComponent<ParticleSystem>().maxParticles = (_isOnGround) ? 100 : 0;
-            speed = speedcntrl.speed;
+            speed = speedCntrl.speed;
             var velocityOverLifetimeModule = dirt.GetComponent<ParticleSystem>().velocityOverLifetime;
             velocityOverLifetimeModule.speedModifier = speed * 0.5f;
         }

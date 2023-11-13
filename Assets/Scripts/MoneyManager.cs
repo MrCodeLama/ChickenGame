@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
 {
-    public void AddMoney()
+    public void AddMoney(bool _isLegendary)
     {
-        SaveManager.instance.money += 1;
+        SaveManager.instance.money += (_isLegendary) ? 10 : 1;
         SaveManager.instance.Save();
     }
 }

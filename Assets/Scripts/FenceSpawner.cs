@@ -5,17 +5,15 @@ using UnityEngine;
 public class FenceSpawner : MonoBehaviour
 {
     public GameObject Fence;
-    public float speed = 0.2f;
+    private float speed = 0.2f;
     private float nextSpawnTime;
-    public SpeedController speedcntrl;
+    private SpeedController speedCntrl;
     
     void Start()
     {
-        //nextSpawnTime = Random.Range(speed, speed*10f);
-        nextSpawnTime = speed * 0f;
-
-        speedcntrl = Camera.main.GetComponent<SpeedController>();
-        UpdateSpeed();
+        nextSpawnTime = 0.0f;
+        speedCntrl = Camera.main.GetComponent<SpeedController>();
+        speed = speedCntrl.speed;
     }
     
     void Update()
@@ -24,7 +22,6 @@ public class FenceSpawner : MonoBehaviour
         if (nextSpawnTime <= 0)
         {
             SpawnFence();
-            //nextSpawnTime = Random.Range(speed*5f, speed*10f);
             if (speed < 0.3f)
             {
                 nextSpawnTime = Random.Range(2f/(speed * 4.1f), 2f/(speed * 4.1f) + 2f);
@@ -38,13 +35,7 @@ public class FenceSpawner : MonoBehaviour
                 nextSpawnTime = Random.Range(1.5f/(speed), 1.5f/(speed) + 0.5f);
             }
         }
-
-        UpdateSpeed();
-    }
-    
-    private void UpdateSpeed()
-    {
-        speed = speedcntrl.speed;
+        speed = speedCntrl.speed;
     }
     
     void SpawnFence()

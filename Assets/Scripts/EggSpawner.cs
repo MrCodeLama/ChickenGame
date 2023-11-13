@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class EggSpawner : MonoBehaviour
 {
-    public int test;
-    public Collider[] colliders;
     public GameObject commonEgg;
+    public GameObject legendaryEgg;
+    public SpeedController speedCntrl;
     private float nextSpawnTime;
-    public SpeedController speedcntrl;
-    
+    private bool previousLegendaryEgg;
+    private float maxSpawnTime;
+    private float minSpawnTime;
+    private Vector3 spawnPoint;
+    private Collider[] colliders;
     void Start()
     {
-        //nextSpawnTime = Random.Range(speed, speed*10f);
-        speedcntrl = Camera.main.GetComponent<SpeedController>();
+        speedCntrl = Camera.main.GetComponent<SpeedController>();
         nextSpawnTime = 2f;
+        previousLegendaryEgg = false;
+        spawnPoint = new Vector3(6f, -0.2f, 0f);
     }
     
     void Update()
@@ -22,24 +26,35 @@ public class EggSpawner : MonoBehaviour
         nextSpawnTime -= Time.deltaTime;
         if (nextSpawnTime <= 0)
         {
-            nextSpawnTime = Random.Range(1/(speedcntrl.speed * 3),1/(speedcntrl.speed * 3) + 0.2f);
+            maxSpawnTime = 3 / (speedCntrl.speed * 3) + 0.3f;
+            minSpawnTime = 1 / (speedCntrl.speed * 3);
             
-            colliders = Physics.OverlapBox(new Vector3(7f, 0, 0f), new Vector3(1f, 0.3f, 0.3f));
+            nextSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+            
+            colliders = Physics.OverlapBox(
+                spawnPoint+Vector3.up *1.4f, 
+                    new Vector3(0.6f, 0.3f, 0.3f)
+                    );
+            
             if (colliders.Length == 0)
-            {
-                test = colliders.Length;
                 SpawnEgg();
-            }
-            else
-            {
-                test = -1;
-            }
         }
     }
     
     void SpawnEgg()
     {
-        GameObject newEgg = Instantiate(commonEgg, new Vector3(6f, -0.2f, 0f), Quaternion.identity);
+        GameObject egg;
+        if (Random.Range(1, 10) % 9 == 0 && !previousLegendaryEgg)
+        {
+            egg = legendaryEgg;
+            previousLegendaryEgg = true;
+        }
+        else
+        {
+            egg = commonEgg;
+            previousLegendaryEgg = false;
+        }
+        GameObject newEgg = Instantiate(egg, spawnPoint, Quaternion.identity);
         
         newEgg.transform.parent = transform;
     }

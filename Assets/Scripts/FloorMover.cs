@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class FloorMover : MonoBehaviour
 {
-    private SpeedController speedcontroller;    
-    public float speed = 0.2f;
-    private float removex = -30.6f;
+    private SpeedController speedCntrl;
+    private float speed;
+    private float removeX = -30.6f;
     public List<GameObject> floors;
-    public Vector3 movement;
-    private bool _isGameOver;
+    private PlayMode playMode;
 
     void Start()
     {
-        speedcontroller = Camera.main.GetComponent<SpeedController>();
+        speedCntrl = Camera.main.GetComponent<SpeedController>();
         for (int i = 0; i < 2; i++)
         {
             floors.Add(transform.GetChild(i).gameObject);
         }
+        speed = speedCntrl.speed;
+        playMode = Camera.main.GetComponent<PlayMode>();
     }
 
     void Update()
     {
-        _isGameOver = Camera.main.GetComponent<PlayMode>()._isGameOver;
-        if (!_isGameOver)
+        if (!playMode._isGameOver)
         {
-            UpdateParameters();
+            speed = speedCntrl.speed;
             moveFloor();
         }
     }
@@ -34,17 +34,11 @@ public class FloorMover : MonoBehaviour
     {
         foreach (GameObject el in floors)
         {
-            if (el.transform.position.x <= removex)
+            if (el.transform.position.x <= removeX)
             {
                 el.transform.position = new Vector3(20.6f - speed * 0.2f, -0.8f,0);
-                el.transform.Translate(movement);
             }
-            el.transform.Translate(movement);
+            el.transform.Translate(speedCntrl.movement);
         }
-    }
-    private void UpdateParameters()
-    {
-        speed = speedcontroller.speed;
-        movement = speedcontroller.movement;
     }
 }
