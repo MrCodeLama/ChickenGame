@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FenceSpawner : MonoBehaviour
 {
@@ -40,8 +42,8 @@ public class FenceSpawner : MonoBehaviour
     
     void SpawnFence()
     {
-        GameObject newFence = Instantiate(Fence, new Vector3(6f, -0.5f, 0f), Quaternion.identity);
-        Vector3 spawnPosition = new Vector3(6f, -0.5f, 0f);
+        GameObject newFence = Instantiate(Fence, new Vector3(6f, -0.5f, 0), Quaternion.identity);
+        Vector3 spawnPosition = new Vector3(6f, -0.5f, transform.position.z);
         newFence.transform.position = spawnPosition;
         newFence.transform.parent = transform;
     }

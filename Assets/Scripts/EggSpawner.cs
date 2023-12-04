@@ -18,7 +18,7 @@ public class EggSpawner : MonoBehaviour
         speedCntrl = Camera.main.GetComponent<SpeedController>();
         nextSpawnTime = 2f;
         previousLegendaryEgg = false;
-        spawnPoint = new Vector3(6f, -0.2f, 0f);
+        spawnPoint = new Vector3(6f, -0.2f, transform.position.z);
     }
     
     void Update()

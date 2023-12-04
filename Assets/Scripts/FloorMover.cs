@@ -36,7 +36,7 @@ public class FloorMover : MonoBehaviour
         {
             if (el.transform.position.x <= removeX)
             {
-                el.transform.position = new Vector3(20.6f - speed * 0.2f, -0.8f,0);
+                el.transform.position = new Vector3(20.6f - speed * 0.2f, -0.8f,transform.position.z);
             }
             el.transform.Translate(speedCntrl.movement);
         }
